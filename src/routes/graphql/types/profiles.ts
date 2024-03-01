@@ -34,7 +34,7 @@ export const profileType: GraphQLObjectType = new GraphQLObjectType({
 });
 
 export const createProfileInputType = new GraphQLInputObjectType({
-  name: 'createProfileInput',
+  name: 'CreateProfileInput',
   fields: () => ({
     isMale: { type: new GraphQLNonNull(GraphQLBoolean) },
     yearOfBirth: { type: new GraphQLNonNull(GraphQLInt) },
@@ -50,7 +50,7 @@ export const createProfileMutation = {
 };
 
 export const changeProfileInputType = new GraphQLInputObjectType({
-  name: 'changeProfileInput',
+  name: 'ChangeProfileInput',
   fields: () => ({
     isMale: { type: GraphQLBoolean },
     yearOfBirth: { type: GraphQLInt },

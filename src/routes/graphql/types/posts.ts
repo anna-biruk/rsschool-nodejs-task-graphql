@@ -46,7 +46,9 @@ export const createPostInputType = new GraphQLInputObjectType({
 export const createPostMutation = {
   type: new GraphQLNonNull(postType),
   args: { dto: { type: new GraphQLNonNull(createPostInputType) } },
-  resolve: (_source, { dto }, { prisma }) => prisma.post.create({ data: dto }),
+  resolve: (_source, { dto }, { prisma }) => {
+    return prisma.post.create({ data: dto });
+  },
 };
 
 export const changePostInputType = new GraphQLInputObjectType({
