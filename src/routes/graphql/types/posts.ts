@@ -1,7 +1,6 @@
 import {
   GraphQLBoolean,
   GraphQLInputObjectType,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
@@ -22,17 +21,6 @@ export const postType: GraphQLObjectType = new GraphQLObjectType({
     },
   }),
 });
-
-// export const getPostQuery = {
-//   type: postType,
-//   args: { id: { type: new GraphQLNonNull(UUIDType) } },
-//   resolve: (_source, { id }, { prisma }) => prisma.post.findUnique({ where: { id } }),
-// };
-//
-// export const getPostsQuery = {
-//   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(postType))),
-//   resolve: (_source, _args, { prisma }) => prisma.post.findMany(),
-// };
 
 export const createPostInputType = new GraphQLInputObjectType({
   name: 'CreatePostInput',
