@@ -1,5 +1,4 @@
 import { GraphQLFloat, GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
-import { UUIDType } from './uuid.js';
 import { profileType } from './profiles.js';
 import { MemberTypeId } from './member-type-id.js';
 
@@ -12,3 +11,18 @@ export const memberType: GraphQLObjectType = new GraphQLObjectType({
     profiles: { type: new GraphQLList(profileType) },
   }),
 });
+
+export const getMemberTypeQuery = {
+  type: new GraphQLNonNull(memberType),
+  args: {
+    id: { type: new GraphQLNonNull(MemberTypeId) },
+  },
+  resolve: (_source, { id }, { prisma }) => {
+    prisma.memberType.findUnique({ where: { id } });
+  },
+};
+
+export const getMemberTypesQuery = {
+  type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(memberType))),
+  resolve: (_source, _args, { prisma }) => prisma.memberType.findMany(),
+};
