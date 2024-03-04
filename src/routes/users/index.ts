@@ -18,7 +18,7 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler() {
-      return prisma.user.findMany();
+      return await prisma.user.findMany();
     },
   });
 
